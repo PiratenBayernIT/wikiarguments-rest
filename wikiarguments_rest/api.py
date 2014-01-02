@@ -31,7 +31,7 @@ class QuestionResource(Resource):
 
     def get(self, question_url):
         args = QuestionResource.parser.parse_args()
-        question = Question.query.filter_by(url=question_url).one()
+        question = Question.query.filter_by(url=question_url).first_or_404()
         print(args)
         if args["details"]:
             return marshal(question, QuestionResource.fields_with_detail)
