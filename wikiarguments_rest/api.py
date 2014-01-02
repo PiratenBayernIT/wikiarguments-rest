@@ -32,12 +32,16 @@ class QuestionResource(Resource):
     def get(self, question_url):
         args = QuestionResource.parser.parse_args()
         question = Question.query.filter_by(url=question_url).first_or_404()
-        print(args)
         if args["details"]:
             return marshal(question, QuestionResource.fields_with_detail)
         else:
             return marshal(question, QuestionResource.fields)
 
+
+class QuestionsResource(Resource):
+    def get(self):
+        questions = Question.query.all()
+        return marshal(questions, QuestionResource.fields)
 
 class QuestionURLFormatter(Raw):
     def format(self, question: Question):
@@ -82,5 +86,6 @@ class ArgumentsResource(ArgumentResource):
 
 api.add_resource(HelloWorld, "/hello")
 api.add_resource(QuestionResource, "/questions/<string:question_url>")
+api.add_resource(QuestionsResource, "/questions/")
 api.add_resource(ArgumentResource, "/questions/<string:question_url>/arguments/<string:argument_url>")
-api.add_resource(ArgumentsResource, "/questions/<string:question_url>/arguments")
+api.add_resource(ArgumentsResource, "/questions/<string:question_url>/arguments/")
