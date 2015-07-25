@@ -18,8 +18,8 @@ doc = """\
 <h3>Examples</h3>
 
 <ul>
-<li><a href="/questions/SÄA001/arguments?details=0">/questions/SÄA001/arguments?details=0</a>
-<li><a href="/questions/SÄA001/arguments/teilnahme-wird-erleichtert?details=1">/questions/SÄA001/arguments/teilnahme-wird-erleichtert?details=1</a>
+<li><a href="/questions/SAA001/arguments?details=0">/questions/SAA001/arguments?details=0</a>
+<li><a href="/questions/SAA001/arguments/teilnahme-wird-erleichtert?details=1">/questions/SAA001/arguments/teilnahme-wird-erleichtert?details=1</a>
 </ul>
 """
 
