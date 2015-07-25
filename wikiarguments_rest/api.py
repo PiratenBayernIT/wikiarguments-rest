@@ -1,5 +1,5 @@
 from flask import abort
-from flask.ext.restful import Api, Resource, reqparse, marshal, types
+from flask.ext.restful import Api, Resource, reqparse, marshal
 from flask.ext.restful.fields import String, Raw
 
 from wikiarguments_rest import app
@@ -27,7 +27,7 @@ class QuestionResource(Resource):
     )
     fields_with_detail.update(fields)
     parser = reqparse.RequestParser()
-    parser.add_argument("details", type=types.natural, default=0)
+    parser.add_argument("details", type=int, default=0)
 
     def get(self, question_url):
         args = QuestionResource.parser.parse_args()
@@ -42,6 +42,7 @@ class QuestionsResource(Resource):
     def get(self):
         questions = Question.query.all()
         return marshal(questions, QuestionResource.fields)
+
 
 class QuestionURLFormatter(Raw):
     def format(self, question: Question):
@@ -58,11 +59,12 @@ class ArgumentResource(Resource):
         type=Raw,
         question_url=QuestionURLFormatter(attribute="question"),
         headline=String)
-    fields_with_detail = dict(
-            details=String)
+
+    fields_with_detail = dict(details=String)
     fields_with_detail.update(fields)
+    
     parser = reqparse.RequestParser()
-    parser.add_argument("details", type=types.natural, default=0)
+    parser.add_argument("details", type=int, default=0)
 
     def get(self, question_url: str, argument_url: str):
         question = Question.query.filter_by(url=question_url).first_or_404()
