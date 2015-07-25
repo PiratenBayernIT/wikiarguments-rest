@@ -21,6 +21,7 @@ def make_app(**app_options):
     logg.info("using database URI: '%s'", app.config["SQLALCHEMY_DATABASE_URI"])
     logg.debug("config is %s", pformat(dict(app.config)))
 
+    app.config["RESTFUL_JSON"] = {'ensure_ascii': False}
     db = SQLAlchemy(app)
 
     import wikiarguments_rest.views
