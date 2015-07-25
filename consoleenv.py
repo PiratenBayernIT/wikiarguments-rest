@@ -10,4 +10,4 @@ from wikiarguments_rest import make_app
 
 app = make_app()
 
-from wikiarguments_rest.datamodel_auto import *
+from wikiarguments_rest.datamodel import *
